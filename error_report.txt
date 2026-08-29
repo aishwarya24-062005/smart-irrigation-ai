@@ -1,0 +1,7 @@
+SMART IRRIGATION ERROR HANDLING REPORT
+=============================================
+
+Rows: 10000
+Columns: 20
+Total Missing Values: 0
+Duplicate Records: 0
