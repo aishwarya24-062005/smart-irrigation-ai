@@ -3,36 +3,33 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+st.set_page_config(page_title="Smart Irrigation EDA", layout="wide")
+
+# Black theme
+st.markdown("""
+<style>
+.stApp{background-color:#000;color:white}
+h1,h2,h3,p,label{color:white}
+</style>
+""", unsafe_allow_html=True)
+
 st.title("🌱 Smart Irrigation - EDA Dashboard")
 
 df = pd.read_csv("cleaned_irrigation_data.csv")
 
-st.header("Dataset Overview")
+# Summary
+st.header("📊 EDA Summary")
+a,b,c,d = st.columns(4)
+a.metric("Records",len(df))
+b.metric("Features",len(df.columns))
+c.metric("Missing",df.isnull().sum().sum())
+d.metric("Duplicates",df.duplicated().sum())
 
-st.write("Rows:", df.shape[0])
-st.write("Columns:", df.shape[1])
+# Preview
+st.header("📋 Dataset Preview")
+st.dataframe(df.head())
 
-st.subheader("Dataset Preview")
-st.dataframe(df.fillna(""))
-
-st.subheader("Dataset Preview")
-st.write(df.dtypes)
-
-st.subheader("Missing Values")
-st.write(df.isnull().sum())
-
-st.subheader("Statistical Summary")
-st.write(df.describe())
-
-st.subheader("Correlation Heatmap")
-
-fig, ax = plt.subplots(figsize=(10, 6))
-sns.heatmap(
-    df.select_dtypes(include="number").corr(),
-    annot=True,
-    cmap="coolwarm",
-    ax=ax
-)
-st.pyplot(fig)
-
-st.success("EDA completed successfully!")
+# Numerical
+st.header("📈 Numerical Analysis")
+num = df.select_dtypes("number").columns
+x = st.selectbox("Select Feature",num
