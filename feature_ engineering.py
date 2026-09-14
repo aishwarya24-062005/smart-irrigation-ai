@@ -1,15 +1,11 @@
 import pandas as pd
-
 # Load cleaned dataset
 df = pd.read_csv("cleaned_irrigation_data.csv")
-
 # Target column
 target = "Irrigation_Need"
-
 # Separate features (X) and target (y)
 X = df.drop(columns=[target])
 y = df[target]
-
 # Display selected features
 print("FEATURE SELECTION")
 print("------------------")

@@ -1,27 +1,37 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-# Load dataset
-df = pd.read_csv("cleaned_irrigation_data.csv")
+# Load CSV
+df = pd.read_csv("irrigation_prediction.csv")
 
-# Show columns
-print("Columns in dataset:")
-print(df.columns.tolist())
-
-# Show dataset size
-print("\nDataset shape:")
+# Dataset shape
+print("Dataset shape:")
 print(df.shape)
 
+# Show column names
+print("\nColumn names:")
+print(df.columns.tolist())
+
+# Separate features and target
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+
 # Split data
-train_data, test_data = train_test_split(
-    df,
-    test_size=0.20,
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
     random_state=42
 )
 
-# Show results
+# Print shapes
 print("\nTraining data shape:")
-print(train_data.shape)
+print(X_train.shape)
 
 print("\nTesting data shape:")
-print(test_data.shape)
+print(X_test.shape)
+
+print("\nTraining target shape:")
+print(y_train.shape)
+
+print("\nTesting target shape:")
+print(y_test.shape)
